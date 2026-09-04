@@ -25,14 +25,12 @@
       overflow-x: hidden;
     }
 
-    /* ── MATRIX ── */
     #code-canvas {
       position: fixed; inset: 0;
       z-index: 0; opacity: 0.07;
       pointer-events: none;
     }
 
-    /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
@@ -76,14 +74,12 @@
     }
     .nav-resume:hover { background: rgba(56,189,248,0.1); }
 
-    /* ── WRAP ── */
     .wrap {
       max-width: 960px;
       margin: 0 auto;
       padding: 0 4rem;
     }
 
-    /* ── HERO ── */
     #hero {
       min-height: 100vh;
       display: flex; flex-direction: column;
@@ -139,11 +135,9 @@
       font-size: 15px; font-weight: 600;
       text-decoration: none; border: none;
       transition: background .2s;
-      
     }
     .btn-solid:hover { background: #0369a1; }
 
-    /* ── SECTIONS ── */
     section.main-sec {
       padding: 5rem 0;
       position: relative; z-index: 1;
@@ -161,10 +155,8 @@
       margin-right: .35rem;
     }
 
-    /* contact centered heading */
     #contact .sec-heading { text-align: center; }
 
-    /* ── CARD ── */
     .card {
       background: rgba(4,18,32,0.5);
       border: 1px solid rgba(56,189,248,0.12);
@@ -184,7 +176,6 @@
   transform: none;
 }
 
-    /* ── ABOUT ── */
     #about .card p {
       color: var(--muted); line-height: 1.85;
       margin-bottom: 1rem; text-align: left;
@@ -192,7 +183,6 @@
     #about .card p:last-child { margin-bottom: 0; }
     #about .card p strong { color: var(--text); font-weight: 600; }
 
-    /* ── EDUCATION ── */
     .edu-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -204,7 +194,6 @@
 .edu-school { color: var(--muted); font-size: 14px; line-height: 1.7; }
     .edu-note { color: var(--muted); font-size: 13px; margin-top: .4rem; line-height: 1.6; }
 
-    /* ── SKILLS ── */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -222,7 +211,6 @@
     }
     .skill-tag:hover { background: rgba(56,189,248,0.18); }
 
-    /* ── PROJECTS ── */
     .project-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
@@ -250,19 +238,6 @@
       border-radius: 4px; padding: .18rem .6rem;
     }
 
-    /* ── ACHIEVEMENTS ──
-    .ach-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.2rem;
-    }
-    .ach-entry { text-align: left; }
-    .ach-icon { font-size: 1.4rem; margin-bottom: .5rem; }
-    .ach-title { font-weight: 700; color: #fff; margin-bottom: .4rem; }
-    .ach-desc { color: var(--muted); line-height: 1.7; font-size: 14px; }
-    */
-
-    /* ── CONTACT ── */
     #contact .contact-inner {
       max-width: 500px; margin: 0 auto; text-align: center;
     }
@@ -291,7 +266,6 @@
       font-family: Arial, sans-serif; font-size: 15px; font-weight: 700;
       border: none; border-radius: 8px; cursor: pointer;
       transition: background .2s;
-      
     }
     .contact-submit:hover { background: #055986; }
     .contact-submit:disabled { opacity: .6; cursor: not-allowed; }
@@ -301,7 +275,6 @@
     .contact-status.success { color: #4ade80; }
     .contact-status.error { color: #f87171; }
 
-    /* ── FOOTER ── */
     footer {
       padding: 1.8rem; text-align: center;
       font-size: 13px; color: var(--muted);
@@ -314,7 +287,6 @@
     }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-    /* ── HAMBURGER ── */
     .hamburger {
       display: none; flex-direction: column; justify-content: center;
       gap: 5px; cursor: pointer; padding: 4px; z-index: 200;
@@ -329,7 +301,6 @@
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* mobile dropdown */
     .mobile-menu {
       display: none;
       position: fixed; top: 56px; left: 0; right: 0;
@@ -348,7 +319,6 @@
     .mobile-menu a:last-child { border-bottom: none; }
     .mobile-menu a:hover { color: var(--sky); background: rgba(56,189,248,0.05); }
 
-    /* ── TABLET (768px) ── */
     @media (max-width: 900px) {
       nav { padding: 1rem 2rem; }
       .nav-links { gap: 1.2rem; }
@@ -362,12 +332,11 @@
       .ach-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
     }
 
-    /* ── MOBILE (600px) ── */
     @media (max-width: 600px) {
       nav { padding: .85rem 1.2rem; }
       .nav-links { display: none !important; }
       .nav-right { gap: .7rem; }
-      .nav-icon { display: none; }   /* hide social icons on mobile, keep resume */
+      .nav-icon { display: none; }
       .hamburger { display: flex; }
 
       #hero {
@@ -388,7 +357,6 @@
       .sec-title { font-size: 1.3rem; }
 
       .edu-grid { grid-template-columns: 1fr; }
-      /* .skills-grid { grid-template-columns: 1fr 1fr; } */
       .project-grid { grid-template-columns: 1fr; }
       .ach-grid { grid-template-columns: 1fr 1fr; }
 
@@ -397,9 +365,7 @@
       #contact .contact-inner { max-width: 100%; }
     }
 
-    /* ── VERY SMALL (380px) ── */
     @media (max-width: 380px) {
-      /* .skills-grid { grid-template-columns: 1fr; } */
       .ach-grid { grid-template-columns: 1fr; }
       .hero-name { font-size: 2rem; }
     }
@@ -414,9 +380,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#education">Education</a></li>
-    <!-- <li><a href="#skills">Skills</a></li> -->
     <li><a href="#projects">Projects</a></li>
-    <!-- <li><a href="#achievements">Achievements</a></li> -->
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
@@ -434,12 +398,7 @@
         <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
       </svg>
     </a>
-    <!-- <a href="https://leetcode.com/u/MrunmayiRS/" target="_blank" rel="noopener noreferrer" class="nav-icon" title="LeetCode">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="19" height="19">
-        <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/>
-      </svg>
-    </a> -->
-    <a href="#" class="nav-resume">
+    <a href="Mrunmayi_Shirsat.pdf" target="_blank" class="nav-resume">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
         <polyline points="14 2 14 8 20 8"/>
@@ -449,7 +408,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="hero">
   <p class="hero-greeting">Hi, my name is</p>
   <h1 class="hero-name">Mrunmayi Shirsat.</h1>
@@ -467,7 +425,6 @@
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="main-sec">
   <div class="wrap">
     <div class="sec-heading"><span class="sec-title">About Me</span></div>
@@ -477,7 +434,6 @@
   </div>
 </section>
 
-<!-- EDUCATION -->
 <section id="education" class="main-sec">
   <div class="wrap">
     <div class="sec-heading"><span class="sec-title">Education</span></div>
@@ -492,58 +448,6 @@
   </div>
 </section>  
 
-<!-- SKILLS
-<section id="skills" class="main-sec">
-  <div class="wrap">
-    <div class="sec-heading"><span class="sec-title">Skills</span></div>
-    <div class="skills-grid">
-      <div class="card skill-card">
-        <div class="skill-label">Languages</div>
-        <div class="skill-tags">
-          <span class="skill-tag">JavaScript</span><span class="skill-tag">Python</span>
-          <span class="skill-tag">Java</span><span class="skill-tag">C++</span><span class="skill-tag">TypeScript</span>
-        </div>
-      </div>
-      <div class="card skill-card">
-        <div class="skill-label">Frontend</div>
-        <div class="skill-tags">
-          <span class="skill-tag">React.js</span><span class="skill-tag">HTML / CSS</span>
-          <span class="skill-tag">Next.js</span><span class="skill-tag">Tailwind CSS</span>
-        </div>
-      </div>
-      <div class="card skill-card">
-        <div class="skill-label">Backend</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Node.js</span><span class="skill-tag">Express.js</span>
-          <span class="skill-tag">Django</span><span class="skill-tag">REST APIs</span>
-        </div>
-      </div>
-      <div class="card skill-card">
-        <div class="skill-label">Database</div>
-        <div class="skill-tags">
-          <span class="skill-tag">MongoDB</span><span class="skill-tag">PostgreSQL</span>
-          <span class="skill-tag">MySQL</span><span class="skill-tag">Firebase</span>
-        </div>
-      </div>
-      <div class="card skill-card">
-        <div class="skill-label">Tools</div>
-        <div class="skill-tags">
-          <span class="skill-tag">Git</span><span class="skill-tag">GitHub</span>
-          <span class="skill-tag">Docker</span><span class="skill-tag">Linux</span><span class="skill-tag">Figma</span>
-        </div>
-      </div>
-      <div class="card skill-card">
-        <div class="skill-label">Concepts</div>
-        <div class="skill-tags">
-          <span class="skill-tag">DSA</span><span class="skill-tag">OOP</span>
-          <span class="skill-tag">System Design</span><span class="skill-tag">Agile</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-<!-- PROJECTS -->
 <section id="projects" class="main-sec">
   <div class="wrap">
     <div class="sec-heading"><span class="sec-title">Projects</span></div>
@@ -558,61 +462,10 @@
         <p class="project-desc">A full-stack peer-to-peer rental platform that enables users to list, rent and manage items securely with email verification, image uploads, reviews and an escrow-based payment workflow.</p>
         <div class="project-tech"><span>Node.js</span><span>Express.js</span><span>MySQL</span><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
       </div>
-      <!-- <div class="card project-entry">
-        <div class="project-header">
-          <div class="project-name">AI Chat Assistant</div>
-          <a href="https://github.com/" target="_blank" class="project-gh" title="View on GitHub">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-          </a>
-        </div>
-        <p class="project-desc">A cross-platform chat application with real-time AI responses powered by the OpenAI API, featuring persistent chat history and markdown rendering.</p>
-        <div class="project-tech"><span>Next.js</span><span>OpenAI API</span><span>Tailwind CSS</span><span>TypeScript</span></div>
-      </div>
-      <div class="card project-entry">
-        <div class="project-header">
-          <div class="project-name">Data Dashboard</div>
-          <a href="https://github.com/" target="_blank" class="project-gh" title="View on GitHub">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
-          </a>
-        </div>
-        <p class="project-desc">An interactive analytics dashboard visualizing real-time data with filterable charts, exportable reports, and role-based access control.</p>
-        <div class="project-tech"><span>Python</span><span>Django</span><span>PostgreSQL</span><span>Chart.js</span></div>
-      </div> -->
     </div>
   </div>
 </section>
 
-<!-- ACHIEVEMENTS
-<section id="achievements" class="main-sec">
-  <div class="wrap">
-    <div class="sec-heading"><span class="sec-title">Achievements</span></div>
-    <div class="ach-grid">
-      <div class="card ach-entry">
-        <div class="ach-icon">🏆</div>
-        <div class="ach-title">Competitive Programming</div>
-        <div class="ach-desc">Solved 300+ problems on LeetCode and CodeChef. Achieved 3-star rating. Participated in ICPC regionals.</div>
-      </div>
-      <div class="card ach-entry">
-        <div class="ach-icon">📜</div>
-        <div class="ach-title">Certifications</div>
-        <div class="ach-desc">AWS Cloud Practitioner, Meta Front-End Developer Certificate, Google Data Analytics Professional Certificate.</div>
-      </div>
-      <div class="card ach-entry">
-        <div class="ach-icon">🎓</div>
-        <div class="ach-title">Academic Excellence</div>
-        <div class="ach-desc">8.1 GPA in B.Tech. Top 10 department rank. Merit scholarship for 3 consecutive semesters.</div>
-      </div>
-      <div class="card ach-entry">
-        <div class="ach-icon">🚀</div>
-        <div class="ach-title">Hackathons</div>
-        <div class="ach-desc">Top 10 finalist at Smart India Hackathon 2024. Winner of college-level project expo two years in a row.</div>
-      </div>
-    </div>
-  </div>
-</section>
--->
-
-<!-- CONTACT -->
 <section id="contact" class="main-sec">
   <div class="wrap">
     <div class="sec-heading"><span class="sec-title">Contact Me</span></div>
@@ -632,7 +485,6 @@
 <footer>Designed &amp; Built by Mrunmayi Shirsat · 2025</footer>
 
 <script>
-  /* ── MATRIX ── */
   const canvas = document.getElementById('code-canvas');
   const ctx = canvas.getContext('2d');
   let cols = [], fontSize = 14;
@@ -661,8 +513,7 @@
   }
   drawMatrix();
 
-  /* ── TYPEWRITER ── */
-  const words = ['Aspiring Software Engineer',/*'Aspiring Full-Stack Developer',*/'Tech Enthusiast','Problem Solver'];
+  const words = ['Aspiring Software Engineer','Tech Enthusiast','Problem Solver'];
   let wi=0, ci=0, deleting=false;
   const twEl = document.getElementById('typewriter-text');
   function type() {
@@ -678,7 +529,6 @@
   }
   setTimeout(type, 1000);
 
-  /* ── REVEAL ── */
   const obs = new IntersectionObserver(entries => {
     entries.forEach((e, i) => {
       if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
@@ -686,13 +536,11 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.card').forEach(el => obs.observe(el));
 
-  /* ── NAV ── */
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
     nav.style.padding = scrollY > 60 ? '0.6rem 4rem' : '1rem 4rem';
   });
 
-  /* ── CONTACT FORM (Formspree AJAX submit) ── */
   const contactForm = document.getElementById('contact-form');
   const contactStatus = document.getElementById('contact-status');
   contactForm.addEventListener('submit', async function (e) {
@@ -737,7 +585,6 @@
     }
   });
 
-  /* stagger */
   document.querySelectorAll('.skills-grid .card').forEach((c,i) => c.style.transitionDelay = `${i*0.06}s`);
   document.querySelectorAll('.project-grid .card').forEach((c,i) => c.style.transitionDelay = `${i*0.1}s`);
   document.querySelectorAll('.edu-grid .card').forEach((c,i) => c.style.transitionDelay = `${i*0.08}s`);
