@@ -89,43 +89,66 @@ document.getElementById('year').textContent = new Date().getFullYear();
 /* ---------- Contact form ---------- */
 const contactForm = document.getElementById('contact-form');
 const contactStatus = document.getElementById('contact-status');
+const submitBtn = contactForm.querySelector('.contact-submit');
+
+function showStatus(msg, type) {
+  contactStatus.textContent = msg;
+  contactStatus.className = 'contact-status' + (type ? ' ' + type : '');
+}
+
+function resetButtonLater() {
+  setTimeout(() => { submitBtn.textContent = 'Send Message'; }, 3000);
+}
 
 contactForm.addEventListener('submit', async function (e) {
   e.preventDefault();
-  const submitBtn = contactForm.querySelector('.contact-submit');
-  const formData = new FormData(contactForm);
+
+  // Browsers often block form requests from pages opened as file://
+  if (location.protocol === 'file:') {
+    showStatus('The form cannot send from a file opened directly. Run the site on a local server or deploy it, then try again.', 'error');
+    return;
+  }
 
   submitBtn.disabled = true;
   submitBtn.textContent = 'Sending...';
-  contactStatus.textContent = '';
-  contactStatus.className = 'contact-status';
+  showStatus('');
 
   try {
     const response = await fetch(contactForm.action, {
       method: 'POST',
-      body: formData,
+      body: new FormData(contactForm),
       headers: { 'Accept': 'application/json' }
     });
 
     if (response.ok) {
       submitBtn.textContent = '✓ Message Sent!';
-      contactStatus.textContent = "Thanks! I'll get back to you soon.";
-      contactStatus.classList.add('success');
+      showStatus("Thanks! I'll get back to you soon.", 'success');
       contactForm.reset();
     } else {
       const data = await response.json().catch(() => ({}));
+      console.error('Formspree error', response.status, data);
+
+      let msg;
+      if (data && Array.isArray(data.errors) && data.errors.length) {
+        msg = data.errors.map(err => err.message).join(', ');
+      } else if (data && data.error) {
+        msg = data.error;
+      } else if (response.status === 404) {
+        msg = 'The contact form was not found. Please try again later.';
+      } else if (response.status === 429) {
+        msg = 'Too many messages sent. Please wait a few minutes and try again.';
+      } else {
+        msg = 'Could not send your message (error ' + response.status + '). Please try again.';
+      }
       submitBtn.textContent = 'Send Message';
-      contactStatus.textContent = (data && data.errors)
-        ? data.errors.map(err => err.message).join(', ')
-        : 'Something went wrong. Please try again.';
-      contactStatus.classList.add('error');
+      showStatus(msg, 'error');
     }
   } catch (err) {
+    console.error('Network error', err);
     submitBtn.textContent = 'Send Message';
-    contactStatus.textContent = 'Network error. Please try again.';
-    contactStatus.classList.add('error');
+    showStatus('Network error. Check your connection or disable ad blockers, then try again.', 'error');
   } finally {
     submitBtn.disabled = false;
-    setTimeout(() => { submitBtn.textContent = 'Send Message'; }, 3000);
+    resetButtonLater();
   }
 });
