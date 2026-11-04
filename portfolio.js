@@ -1,6 +1,11 @@
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- Matrix background ---------- */
 const canvas = document.getElementById('code-canvas');
 const ctx = canvas.getContext('2d');
-let cols = [], fontSize = 14;
+let cols = [];
+const fontSize = 14;
+
 function resizeCanvas() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -8,6 +13,7 @@ function resizeCanvas() {
 }
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
+
 const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz{}[]()<>/=+-*&^%$#@!;:.~';
 function drawMatrix() {
   ctx.fillStyle = 'rgba(2,12,20,0.05)';
@@ -18,44 +24,72 @@ function drawMatrix() {
     ctx.fillStyle = 'rgba(186,230,253,0.85)';
     ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, y * fontSize);
     ctx.fillStyle = 'rgba(56,189,248,0.45)';
-    ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, (y-1) * fontSize);
+    ctx.fillText(chars[Math.floor(Math.random() * chars.length)], x, (y - 1) * fontSize);
     if (y * fontSize > canvas.height && Math.random() > 0.975) cols[i] = 0;
     cols[i]++;
   });
   requestAnimationFrame(drawMatrix);
 }
-drawMatrix();
+if (!reduceMotion) drawMatrix();
 
-const words = ['Aspiring Software Engineer','Tech Enthusiast','Problem Solver'];
-let wi=0, ci=0, deleting=false;
+/* ---------- Typewriter ---------- */
+const words = ['Aspiring Software Engineer', 'Tech Enthusiast', 'Problem Solver'];
 const twEl = document.getElementById('typewriter-text');
+let wi = 0, ci = 0, deleting = false;
+
 function type() {
   const word = words[wi];
   if (!deleting) {
-    twEl.textContent = word.slice(0, ci+1); ci++;
-    if (ci === word.length) { setTimeout(()=>{ deleting=true; type(); }, 1800); return; }
+    twEl.textContent = word.slice(0, ci + 1); ci++;
+    if (ci === word.length) { setTimeout(() => { deleting = true; type(); }, 1800); return; }
   } else {
-    twEl.textContent = word.slice(0, ci-1); ci--;
-    if (ci === 0) { deleting=false; wi=(wi+1)%words.length; }
+    twEl.textContent = word.slice(0, ci - 1); ci--;
+    if (ci === 0) { deleting = false; wi = (wi + 1) % words.length; }
   }
   setTimeout(type, deleting ? 42 : 78);
 }
-setTimeout(type, 1000);
+if (reduceMotion) twEl.textContent = words[0];
+else setTimeout(type, 1000);
 
-const obs = new IntersectionObserver(entries => {
+/* ---------- Card reveal on scroll ---------- */
+const obs = new IntersectionObserver((entries, observer) => {
   entries.forEach((e, i) => {
-    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
   });
 }, { threshold: 0.1 });
 document.querySelectorAll('.card').forEach(el => obs.observe(el));
 
+/* ---------- Nav: shrink on scroll (class, so media-query padding still applies) ---------- */
 const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-  nav.style.padding = scrollY > 60 ? '0.6rem 4rem' : '1rem 4rem';
-});
+function updateNav() { nav.classList.toggle('scrolled', window.scrollY > 60); }
+window.addEventListener('scroll', updateNav, { passive: true });
+updateNav();
 
+/* ---------- Mobile menu ---------- */
+const burger = document.getElementById('hamburger');
+const mmenu = document.getElementById('mobile-menu');
+
+function setMenu(open) {
+  burger.classList.toggle('open', open);
+  mmenu.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', String(open));
+  burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+burger.addEventListener('click', () => setMenu(!mmenu.classList.contains('open')));
+mmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+window.addEventListener('resize', () => { if (window.innerWidth > 600) setMenu(false); });
+
+/* ---------- Footer year ---------- */
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ---------- Contact form ---------- */
 const contactForm = document.getElementById('contact-form');
 const contactStatus = document.getElementById('contact-status');
+
 contactForm.addEventListener('submit', async function (e) {
   e.preventDefault();
   const submitBtn = contactForm.querySelector('.contact-submit');
@@ -92,13 +126,6 @@ contactForm.addEventListener('submit', async function (e) {
     contactStatus.classList.add('error');
   } finally {
     submitBtn.disabled = false;
-    setTimeout(() => {
-      submitBtn.textContent = 'Send Message';
-    }, 3000);
+    setTimeout(() => { submitBtn.textContent = 'Send Message'; }, 3000);
   }
 });
-
-document.querySelectorAll('.skills-grid .card').forEach((c,i) => c.style.transitionDelay = `${i*0.06}s`);
-document.querySelectorAll('.project-grid .card').forEach((c,i) => c.style.transitionDelay = `${i*0.1}s`);
-document.querySelectorAll('.edu-grid .card').forEach((c,i) => c.style.transitionDelay = `${i*0.08}s`);
-document.querySelectorAll('.ach-grid .card').forEach((c,i) => c.style.transitionDelay = `${i*0.08}s`);
