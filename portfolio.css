@@ -10,12 +10,21 @@
 
 html { scroll-behavior: smooth; }
 
+/* keep anchored sections clear of the fixed nav */
+section { scroll-margin-top: 70px; }
+
 body {
   font-family: Arial, sans-serif;
   font-size: 15px;
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
+}
+
+a:focus-visible, button:focus-visible,
+.contact-input:focus-visible, .contact-textarea:focus-visible {
+  outline: 2px solid var(--sky);
+  outline-offset: 3px;
 }
 
 #code-canvas {
@@ -33,6 +42,9 @@ nav {
   border-bottom: 1px solid rgba(56,189,248,0.12);
   transition: padding .3s;
 }
+/* only top/bottom change, so the responsive side padding is preserved */
+nav.scrolled { padding-top: .6rem; padding-bottom: .6rem; }
+
 .nav-logo {
   font-size: 15px; font-weight: 700;
   color: var(--sky); letter-spacing: .1em;
@@ -129,23 +141,17 @@ nav {
   text-decoration: none; border: none;
   transition: background .2s;
 }
-.btn-solid:hover { background: #0369a1; }
+.btn-solid:hover { background: #0369a1; color: #fff; }
 
 section.main-sec {
   padding: 5rem 0;
   position: relative; z-index: 1;
 }
 
-.sec-heading {
-  margin-bottom: 2rem;
-}
+.sec-heading { margin-bottom: 2rem; }
 .sec-title {
   font-size: 1.6rem;
   font-weight: 700; color: #fff;
-}
-.sec-num-inline {
-  color: var(--sky);
-  margin-right: .35rem;
 }
 
 #contact .sec-heading { text-align: center; }
@@ -155,18 +161,17 @@ section.main-sec {
   border: 1px solid rgba(56,189,248,0.12);
   border-radius: 12px;
   padding: 1.6rem 1.8rem;
-  transition: background .3s, border-color .3s, box-shadow .3s, transform .25s;
+  transition: opacity .5s, transform .25s, border-color .25s, box-shadow .25s;
   opacity: 0; transform: translateY(16px);
   backdrop-filter: blur(6px);
 }
 .card.visible {
   opacity: 1; transform: none;
 }
-.card:hover {
-  background: rgba(4, 0, 18, 0.12);
-  border-color: rgba(56,189,248,0.12);
-  box-shadow: none;
-  transform: none;
+.card.visible:hover {
+  transform: translateY(-3px);
+  border-color: rgba(56,189,248,0.4);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.35);
 }
 
 #about .card p {
@@ -185,24 +190,6 @@ section.main-sec {
 .edu-year { color: var(--sky); font-size: 13px; margin-bottom: .7rem; }
 .edu-degree { font-weight: 600; color: #fff; margin-bottom: .5rem; line-height: 1.6; }
 .edu-school { color: var(--muted); font-size: 14px; line-height: 1.7; }
-.edu-note { color: var(--muted); font-size: 13px; margin-top: .4rem; line-height: 1.6; }
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.2rem;
-}
-.skill-card { text-align: left; }
-.skill-label { color: var(--sky); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .7rem; }
-.skill-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
-.skill-tag {
-  font-size: 13px; color: var(--sky);
-  background: rgba(56,189,248,0.07);
-  border: 1px solid rgba(56,189,248,0.18);
-  border-radius: 4px; padding: .2rem .65rem;
-  transition: background .2s;
-}
-.skill-tag:hover { background: rgba(56,189,248,0.18); }
 
 .project-grid {
   display: grid;
@@ -258,9 +245,9 @@ section.main-sec {
   background: var(--sky2); color: #020c14;
   font-family: Arial, sans-serif; font-size: 15px; font-weight: 700;
   border: none; border-radius: 8px; cursor: pointer;
-  transition: background .2s;
+  transition: background .2s, color .2s;
 }
-.contact-submit:hover { background: #055986; }
+.contact-submit:hover { background: #055986; color: #fff; }
 .contact-submit:disabled { opacity: .6; cursor: not-allowed; }
 .contact-status {
   font-size: 13px; margin-top: .3rem; min-height: 1.2em;
@@ -320,9 +307,7 @@ footer {
   .wrap { padding: 0 2rem; }
   section.main-sec { padding: 4rem 0; }
   .edu-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-  .skills-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
   .project-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-  .ach-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
 }
 
 @media (max-width: 600px) {
@@ -351,7 +336,6 @@ footer {
 
   .edu-grid { grid-template-columns: 1fr; }
   .project-grid { grid-template-columns: 1fr; }
-  .ach-grid { grid-template-columns: 1fr 1fr; }
 
   .card { padding: 1.2rem 1.2rem; }
 
@@ -359,6 +343,13 @@ footer {
 }
 
 @media (max-width: 380px) {
-  .ach-grid { grid-template-columns: 1fr; }
   .hero-name { font-size: 2rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .hero-greeting, .hero-name, .hero-typewriter, .hero-desc, .hero-btns { opacity: 1; }
+  .card { opacity: 1; transform: none; }
+  #code-canvas { display: none; }
 }
