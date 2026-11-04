@@ -4,11 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mrunmayi Shirsat</title>
+  <meta name="description" content="Portfolio of Mrunmayi Shirsat, an aspiring software engineer studying B.Tech in Artificial Intelligence." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mrunmayi Shirsat" />
+  <meta property="og:description" content="Aspiring software engineer. Projects, education and contact details." />
+  <meta name="theme-color" content="#020c14" />
   <link rel="stylesheet" href="portfolio.css" />
 </head>
 <body>
 
-<canvas id="code-canvas"></canvas>
+<canvas id="code-canvas" aria-hidden="true"></canvas>
 
 <nav>
   <div class="nav-logo">MS.</div>
@@ -19,37 +24,47 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-    <a href="https://github.com/Mrunmayi30" target="_blank" rel="noopener noreferrer" class="nav-icon" title="GitHub">
+    <a href="https://github.com/Mrunmayi30" target="_blank" rel="noopener noreferrer" class="nav-icon" title="GitHub" aria-label="GitHub">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/>
       </svg>
     </a>
-    <a href="https://www.linkedin.com/in/mrunmayishirsat/" target="_blank" rel="noopener noreferrer" class="nav-icon" title="LinkedIn">
+    <a href="https://www.linkedin.com/in/mrunmayishirsat/" target="_blank" rel="noopener noreferrer" class="nav-icon" title="LinkedIn" aria-label="LinkedIn">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/>
         <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
       </svg>
     </a>
-    <a href="Mrunmayi_Shirsat.pdf" target="_blank" class="nav-resume">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <a href="Mrunmayi_Shirsat.pdf" target="_blank" rel="noopener noreferrer" class="nav-resume">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
         <polyline points="14 2 14 8 20 8"/>
       </svg>
       Resume
     </a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#about">About</a>
+  <a href="#education">Education</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+  <a href="https://github.com/Mrunmayi30" target="_blank" rel="noopener noreferrer">GitHub</a>
+  <a href="https://www.linkedin.com/in/mrunmayishirsat/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+</div>
+
+<main>
 <section id="hero">
   <p class="hero-greeting">Hi, my name is</p>
   <h1 class="hero-name">Mrunmayi Shirsat.</h1>
   <div class="hero-typewriter">
     <span>I'm a&nbsp;</span>
     <span class="dynamic" id="typewriter-text"></span>
-    <span class="cursor-blink"></span>
+    <span class="cursor-blink" aria-hidden="true"></span>
   </div>
   <p class="hero-desc">
     I enjoy solving problems and building things with technology.
@@ -62,21 +77,21 @@
 
 <section id="about" class="main-sec">
   <div class="wrap">
-    <div class="sec-heading"><span class="sec-title">About Me</span></div>
+    <div class="sec-heading"><h2 class="sec-title">About Me</h2></div>
     <div class="card">
       <p>Hello! I'm <strong>Mrunmayi Shirsat</strong>, interested in software development and technology. I enjoy coding, solving problems, and exploring ideas through projects.</p>
-      <p>I believe in learning by building and improving a little with every project. </p>
+      <p>I believe in learning by building and improving a little with every project.</p>
     </div>
   </div>
 </section>
 
 <section id="education" class="main-sec">
   <div class="wrap">
-    <div class="sec-heading"><span class="sec-title">Education</span></div>
+    <div class="sec-heading"><h2 class="sec-title">Education</h2></div>
     <div class="edu-grid">
       <div class="card edu-entry">
         <div class="edu-year">2023 - 2027</div>
-        <div class="edu-degree">B.Tech in Artificial Intelligence </div>
+        <div class="edu-degree">B.Tech in Artificial Intelligence</div>
         <div class="edu-school">Usha Mittal Institute of Technology, SNDT Women's University</div>
       </div>
     </div>
@@ -85,12 +100,12 @@
 
 <section id="projects" class="main-sec">
   <div class="wrap">
-    <div class="sec-heading"><span class="sec-title">Projects</span></div>
+    <div class="sec-heading"><h2 class="sec-title">Projects</h2></div>
     <div class="project-grid">
       <div class="card project-entry">
         <div class="project-header">
           <div class="project-name">ShareSphere</div>
-          <a href="https://github.com/Mrunmayi30/ShareSphere" target="_blank" class="project-gh" title="View on GitHub">
+          <a href="https://github.com/Mrunmayi30/ShareSphere" target="_blank" rel="noopener noreferrer" class="project-gh" title="View on GitHub" aria-label="ShareSphere on GitHub">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
           </a>
         </div>
@@ -103,21 +118,22 @@
 
 <section id="contact" class="main-sec">
   <div class="wrap">
-    <div class="sec-heading"><span class="sec-title">Contact Me</span></div>
+    <div class="sec-heading"><h2 class="sec-title">Contact Me</h2></div>
     <div class="contact-inner">
       <p class="contact-desc">I'd love to hear from you! Whether you have a question, a project idea, or just want to say hi, feel free to reach out.</p>
       <form class="contact-form" id="contact-form" action="https://formspree.io/f/xkoddbqa" method="POST">
-        <input class="contact-input" type="text" name="name" placeholder="Your Name" required />
-        <input class="contact-input" type="email" name="email" placeholder="Your Email" required />
-        <textarea class="contact-textarea" name="message" placeholder="Your Message" required></textarea>
+        <input class="contact-input" type="text" name="name" placeholder="Your Name" aria-label="Your name" autocomplete="name" required />
+        <input class="contact-input" type="email" name="email" placeholder="Your Email" aria-label="Your email" autocomplete="email" required />
+        <textarea class="contact-textarea" name="message" placeholder="Your Message" aria-label="Your message" required></textarea>
         <button class="contact-submit" type="submit">Send Message</button>
-        <p class="contact-status" id="contact-status"></p>
+        <p class="contact-status" id="contact-status" role="status" aria-live="polite"></p>
       </form>
     </div>
   </div>
 </section>
+</main>
 
-<footer>Designed &amp; Built by Mrunmayi Shirsat · 2025</footer>
+<footer>Designed &amp; Built by Mrunmayi Shirsat · <span id="year">2025</span></footer>
 
 <script src="portfolio.js"></script>
 </body>
